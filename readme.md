@@ -1,0 +1,4 @@
+# Modul 6 Concurrency
+
+## Reflection 1
+Pada Milestone 1, saya mengimplementasikan single-threaded web server sederhana menggunakan Rust yang mendengarkan koneksi TCP di `127.0.0.1:7878` dengan `TcpListener::bind()`. Setiap koneksi masuk diiterasi menggunakan `incoming()`, lalu di dalam fungsi `handle_connection`, `TcpStream` dibungkus dengan `BufReader` untuk membaca HTTP request baris demi baris menggunakan `.lines()`, berhenti saat menemukan blank line via `.take_while()`, dan hasilnya dicetak ke terminal. Di tahap ini server belum mengirim response apapun ke browser, sehingga halaman tidak menampilkan konten — namun koneksi berhasil terbentuk.
