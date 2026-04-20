@@ -6,3 +6,8 @@ Pada Milestone 1, saya mengimplementasikan single-threaded web server sederhana 
 ## Reflection 2
 ![alt text](/assets/milestone2.png)
 Pada Milestone 2, saya memodifikasi fungsi `handle_connection` agar server tidak hanya menerima koneksi, tetapi juga mengirim response HTTP yang valid ke browser. Caranya adalah dengan membaca file `hello.html` menggunakan `fs::read_to_string()`, menyusun HTTP response format `HTTP/1.1 200 OK\r\nContent-Length: {length}\r\n\r\n{contents}`, lalu mengirimkannya ke browser menggunakan `stream.write_all()`. Dengan penambahan ini, browser kini berhasil menampilkan halaman HTML sederhana dan membuktikan bahwa server sudah bisa merespons request.
+
+## Reflection 3
+![alt text](/assets/milestone3.png)
+Pada Milestone 3, saya menambahkan kondisi untuk membedakan request yang masuk dan merespons secara beda. Daripada membaca seluruh request ke dalam vector, saya hanya mengambil baris pertama menggunakan `.next()` untuk mendapatkan `request_line`, lalu mengecek apakah isinya `"GET / HTTP/1.1"`. Jika ya, server mengembalikan `hello.html` dengan status `200 OK`; jika tidak, server mengembalikan `404.html` dengan status `404 NOT FOUND`. Saya juga melakukan refactoring untuk menghilangkan duplikasi kode blok `if/else` kini hanya menentukan `status_line` dan `filename` sebagai tuple, sementara logika membaca file dan menulis response cukup ditulis sekali di luar blok tersebut, membuat kode lebih ringkas.
+
